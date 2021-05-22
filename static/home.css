@@ -47,3 +47,7 @@ a{
 .counter-box.colored .counter {
     color: #fff
 }
+.bottomhead
+{
+    bottom:unset !important;
+}
