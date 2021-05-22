@@ -1,0 +1,27 @@
+{%extends "layout.html" %}
+
+
+{%block content%}<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+<div class="container">
+    <div class="row">
+        <div class="four col-md-4">
+           <a href="channel"> <div class="counter-box colored"> <i class="fas fa-arrow-alt-circle-down"></i> <span class="counter">Channel</span><br>
+                <p>Download specific channel video</p>
+            </div>
+        </a>
+        </div>
+        <div class="four col-md-4">
+            <a href="playlist" ><div class="counter-box colored"><i class="fas fa-clipboard-list"></i> <span class="counter">Playlist</span><br>
+                <p>Download Specific playlist video</p>
+            </div>
+            </a>
+        </div>
+        <div class="four col-md-4">
+            <a href="video" ><div class="counter-box colored"> <i class="fas fa-video"></i> <span class="counter">Video</span><br>
+                <p>Download a specific video</p>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>
+{%endblock content%}

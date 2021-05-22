@@ -1,0 +1,48 @@
+{%extends "layout.html"%}
+{%block content%}<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='channel.css') }}">
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="container search">
+        <div class="form-group ">
+            {{ form.playlistid.label(class="search-1") }}
+            {{ form.playlistid(class="search-2") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class=" btn-outline-info button") }}
+        </div>
+        </div>
+</form>
+
+{% if a %}
+{% if a=="error" %}
+<div class="jumbotron">
+<span class="errormsg"><i class="far fa-sad-tear"></i>Unable to fetch data</span>
+</div>
+{% else %}
+<div class="alldownload">
+<a href="{{ url_for('dpaall', pid=form.playlistid.data ) }}" class="dbutton">Downlaod all in MP3</a>
+<a href="{{ url_for('dpvall', pid=form.playlistid.data ) }}"  class="dbutton" >Downlaod all in Video</a>
+</div>
+<main>
+    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+            {%for i in a["items"]%}
+            <div class="col">
+                <div class="card h-100 shadow-sm"> <img src='{{i["snippet"]["thumbnails"]["medium"]["url"]}}' class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary"><a href="{{ url_for('daudio', vid=i['snippet']['resourceId']['videoId'] ) }}" style="text-decoration: none; color: white !important;">Download in Mp3</a></span> <span class="float-end price-hp">Gettube</span> </div>
+                        <h5 class="card-title">{{i["snippet"]["title"]}}</h5>
+                        
+                        <div class="text-center my-4"> <a href="{{ url_for('dvideohq', vid=i['snippet']['resourceId']['videoId'] ) }}" class="btn btn-warning">Download Video HQ </a><br>
+                            <br><a href="{{ url_for('dvideolq', vid=i['snippet']['resourceId']['videoId'] ) }}" class="btn btn-warning">Download Video LQ</a></div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+            </div>
+    </div>
+</main>
+{% endif %}
+{% endif %}
+{%endblock content%}

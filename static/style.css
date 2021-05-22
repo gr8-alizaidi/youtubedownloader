@@ -1,0 +1,69 @@
+@keyframes mygradient {
+    0% {
+        background-position: 0%
+    }
+
+    100% {
+        background-position: 100%
+    }
+}
+
+body {
+    margin: 0px;
+    background: linear-gradient(90deg, rgb(245, 127, 23), rgb(233, 30, 99), rgb(156, 39, 176), rgb(63, 81, 181));
+    min-height:100vh;
+    background-size: 600% 100%;
+    background-repeat: no-repeat;
+    animation: mygradient 4s linear infinite alternate;
+    color: white;
+}
+
+
+#wave {
+    height:100vh;
+    height: 100%;
+    overflow: hidden
+}
+/* 
+#wave:before {
+    content: '';
+    overflow: hidden;
+    position: absolute;
+    bottom: 12%;
+    left: -250vw;
+    width: 600vw;
+    height: 600vw;
+    background: rgba(248, 248, 248, 0);
+    border-radius: 48% 52% 52% 48% / 48% 52% 48% 52%;
+    animation: wave 9s ease-in-out infinite;
+    animation-delay: -3s
+}
+
+#wave:after {
+    content: '';
+    overflow: hidden;
+    position: absolute;
+    bottom: 12%;
+    left: -250vw;
+    width: 600vw;
+    height: 600vw;
+    background: rgba(248, 248, 248, 0);
+    border-radius: 48% 52% 52% 48% / 48% 52% 48% 52%;
+    animation: wave 9s linear infinite
+} */
+.homehead
+{
+    font-size: 3.5em;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-family: 'Reggae One', cursive;
+}
+a
+{
+    text-decoration: none
+}
+a:hover{
+    text-decoration:none;
+    color:unset
+}

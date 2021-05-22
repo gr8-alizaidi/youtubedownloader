@@ -1,0 +1,42 @@
+{%extends "layout.html"%}
+{%block content%}<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='channel.css') }}">
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="container search">
+        <div class="form-group ">
+            {{ form.videoid.label(class="search-1") }}
+            {{ form.videoid(class="search-2") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class=" btn-outline-info button") }}
+        </div>
+        </div>
+</form>
+
+{% if a %}
+{% if a=="error" %}
+<div class="jumbotron">
+<span class="errormsg"><i class="far fa-sad-tear"></i>Unable to fetch data</span>
+</div>
+{% else %}
+<main>
+    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg- g-3" style="justify-content: center;">
+            
+            <div class="col">
+                <div class="card h-100 w-100 shadow-sm pl"> <img src='{{pic}}' class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary"><a href="{{ url_for('daudio', vid=vid ) }}" style="text-decoration: none; color: white !important;">Download in Mp3</a></span> <span class="float-end price-hp">Gettube</span> </div>
+                        <h5 class="card-title">{{fname}}}</h5>
+                        <div class="text-center my-4"> <a href="{{ url_for('dvideohq', vid=vid ) }}" class="btn btn-warning">Download Video HQ </a><br>
+                             <br><a href="{{ url_for('dvideolq', vid=vid ) }}" class="btn btn-warning">Download Video LQ</a></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</main>
+{% endif %}
+{% endif %}
+{%endblock content%}
