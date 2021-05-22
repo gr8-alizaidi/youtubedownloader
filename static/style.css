@@ -67,3 +67,15 @@ a:hover{
     text-decoration:none;
     color:unset
 }
+.bottomhead
+{
+    position:absolute;
+    bottom:0;
+    width:100vw;
+    height:7vh;
+    font-size: 1.2em;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-family: 'Reggae One', cursive;
+}
