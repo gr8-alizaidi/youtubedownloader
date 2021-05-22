@@ -32,8 +32,8 @@ class videosearch(FlaskForm):
     submit=SubmitField("Search")
 
 
-@app.route("/")
-@app.route("/home")
+@app.route("/", methods=['GET', 'POST'])
+@app.route("/home", methods=['GET', 'POST'])
 def home():
     return render_template("home.html")
 
