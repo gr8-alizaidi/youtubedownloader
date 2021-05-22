@@ -17,7 +17,7 @@ import pafy
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-api_key="AIzaSyCKr4GluXO438EY__-UMHdC2Qd_3j1cVYw"
+api_key="Your Api Key"
 
 class channelsearch(FlaskForm):
     channelid=StringField("Channel ID",validators=[DataRequired()])
@@ -28,7 +28,7 @@ class playlistsearch(FlaskForm):
     submit=SubmitField("Search")
 
 class videosearch(FlaskForm):
-    videoid=StringField("Video ID",validators=[DataRequired()])
+    videoid=StringField("Video Link",validators=[DataRequired()])
     submit=SubmitField("Search")
 
 
@@ -59,7 +59,7 @@ def playlist():
 def video():
     form=videosearch()
     if form.validate_on_submit():
-         url='http://youtube.com/watch?v='+form.videoid.data
+         url=form.videoid.data
          try:
             vid=form.videoid.data
             my_video = YouTube(url)
@@ -170,6 +170,29 @@ def dcaall(cid):
                             
     
     
+# @app.route("/dpaall/<string:pid>")
+# def dpaall(pid):
+#     url="https://www.youtube.com/playlist?list="+pid
+#     try:
+#         playlist = Playlist(url)
+#         zipf = zipfile.ZipFile('gettube.zip','w', zipfile.ZIP_DEFLATED)
+#         for video in playlist:   
+#             yt = YouTube(video)
+#             video = yt.streams.filter(only_audio=True).first()
+#             out_file = video.download()
+#             # save the file
+#             base, ext = os.path.splitext(out_file)
+#             new_file = base + '.mp3'
+#             os.rename(out_file, new_file)
+#             zipf.write(new_file)
+#             remove_file(new_file)
+#         zipf.close()
+#         return send_file('gettube.zip',
+#             mimetype = 'zip',
+#             attachment_filename= 'gettube.zip',
+#             as_attachment = True)                   
+#     except:
+#         return "error"
 @app.route("/dpaall/<string:pid>")
 def dpaall(pid):
     url="https://www.youtube.com/playlist?list="+pid
@@ -177,15 +200,13 @@ def dpaall(pid):
         playlist = Playlist(url)
         zipf = zipfile.ZipFile('gettube.zip','w', zipfile.ZIP_DEFLATED)
         for video in playlist:   
-            yt = YouTube(video)
-            video = yt.streams.filter(only_audio=True).first()
-            out_file = video.download()
+            # yt = YouTube(video)
+            # video = yt.streams.filter(only_audio=True).first()
+            # out_file = video.download()
+            v=get_mp3(video)
             # save the file
-            base, ext = os.path.splitext(out_file)
-            new_file = base + '.mp3'
-            os.rename(out_file, new_file)
-            zipf.write(new_file)
-            remove_file(new_file)
+            zipf.write(v)
+            remove_file(v)
         zipf.close()
         return send_file('gettube.zip',
             mimetype = 'zip',
@@ -215,7 +236,7 @@ def get_mp3(url):
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
-            'preferredquality': '192',
+            'preferredquality': '128',
         }]
     }
     
